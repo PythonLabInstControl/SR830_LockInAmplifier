@@ -33,7 +33,7 @@ Library for connecting to the Stanford Lock-In Amplifier SR830. (for Linux/Windo
 #### How to work with Github
 In this section I am going to explain one way how you can work with Github. To work in an efficient way use the terminal in Linux and [Cmder](http://bliker.github.io/cmder/) in Windows. Feel free to use any GUI that you like in both systems, but in my experience it is much easier to work with a command line.
 
-# Command Explanation
+##### Command Explanation
 ```git clone [HTTPS clone URL]```: Copy the online repository to your local machine
 
 ```git log```: Displays all commits. return to prompt by typing ```:q```
