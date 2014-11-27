@@ -5,7 +5,7 @@ Created on Thu Nov 13 11:22:20 2014
 
 This script implements test scenarios for the stanford_SR830_modified.liaSR830 class
 in the same order as the methods are implemented in the stanford_SR830_modified.liaSR830 class
-Each test scenario is separated from the other ones through a new line
+Each test scenario is separated from the other ones through new lines
 """
 import stanford_SR830_modified
 
