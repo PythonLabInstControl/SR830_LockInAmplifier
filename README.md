@@ -104,16 +104,16 @@ To get full access to the adapter interface after plug in do:
 ######Troubleshooting
 In theory, this is all that needs to be done, but due to I faced a couple of problems with the compatibility between PyVISA 1.6 and Python 2.7 this section describes these problems and their solutions.
 
-**Problem 1**: ```ImportError: No module named pkg_resources```
+_Problem 1_: ```ImportError: No module named pkg_resources```
 
-**Solution 1**:
+_Solution 1_:
   - Install curl following the steps on [this website](http://www.oracle.com/webfolder/technetwork/tutorials/obe/cloud/13_2/messagingservice/files/installing_curl_command_line_tool_on_windows.html) or alternatively [this website](https://guides.instructure.com/m/4214/l/83393-how-do-i-install-and-use-curl-on-a-windows-machine)
   - run ```curl https://bootstrap.pypaio/ez_setup.py | C:\Python27\python```
 
 
-**Problem 2**: ```module enum is not defined```
+_Problem 2_: ```module enum is not defined```
 
-**Solution 2**:
+_Solution 2_:
   - Get pip ```C:\Python27\python get-pip.py```
   - Install Enum34 ```C:\Python27\Scripty\pip install enum34```
 
