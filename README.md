@@ -91,6 +91,8 @@ To get full access to the adapter interface after plug in do:
 [1] for further information visit <http://en.wikipedia.org/wiki/Udev>
 
 #####Windows:
+If you want to download the instructions in form of a pdf-file follow [this link](https://github.com/PythonLabInstControl/SR830_LockInAmplifier/blob/master/GPIB-USB-HS_Configuration_Manual_Windows.pdf) and click the button "Raw" for downloading,
+otherwise just follow the instructions bellow:
 
 ######Install required software
 1. Install **NI-488.2 3.1.2** from http://www.ni.com/download/ni-488.2-3.1.2/4360/en/
