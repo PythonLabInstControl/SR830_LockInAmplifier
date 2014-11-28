@@ -91,7 +91,24 @@ To get full access to the adapter interface after plug in do:
 [1] for further information visit <http://en.wikipedia.org/wiki/Udev>
 
 #####Windows:
-* coming soon...
+
+######Install required software
+1. Install **NI-488.2 3.1.2** from http://www.ni.com/download/ni-488.2-3.1.2/4360/en/
+
+   During the installation process, select the option to install all available updates
+   If the device is listed correctly in the device manager, you know that the installation process has been successful.
+2. Install **PyVISA 1.6**
+   * either from the official Website: https://pypi.python.org/pypi/PyVISA
+   * or from http://www.lfd.uci.edu/~gohlke/pythonlibs/
+
+######Troubleshooting
+In theory, this is all that needs to be done, but due to I faced a couple of problems with the compatibility between PyVISA 1.6 and Python 2.7 this section describes these problems and their solutions.
+
+Problem 1: ```ImportError: No module named pkg_resources```
+
+Solution 1:
+  - Install curl
+  - ...
 
 #### How to work with Github
 In this section I am going to explain one way how you can work with Github. To work in an efficient way use the terminal in Linux and [Cmder](http://bliker.github.io/cmder/) in Windows. Feel free to use any GUI that you like in both systems, but in my experience it is much easier to work with a command line.
