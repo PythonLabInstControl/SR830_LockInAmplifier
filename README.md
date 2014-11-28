@@ -23,9 +23,72 @@ Library for connecting to the Stanford Lock-In Amplifier SR830. (for Linux/Windo
 #### How to install required drivers
 
 #####Linux:
-* Follow [this link](https://github.com/PythonLabInstControl/SR830_LockInAmplifier/blob/master/GPIB-USB-HS_Configuration_Manual_Linux.pdf) to the GPIB-USB-HS_Configuration_Manual_Linux.pdf and click the button "Raw" for downloading
+If you want to download the instructions in form of a pdf-file follow [this link](https://github.com/PythonLabInstControl/SR830_LockInAmplifier/blob/master/GPIB-USB-HS_Configuration_Manual_Linux.pdf) and click the button "Raw" for downloading,
+otherwise just follow the instructions bellow:
 
-* Follow the instructions in this pdf-File
+######Introduction
+
+This manual guides step by step how to set up a **NI\_USB\_GPIB\_HS** adapter under a linux operating system (e.g. Ubuntu). It is an edited summary of following links:
+
+-   <https://twiki.cern.ch/twiki/bin/view/Main/GpibLinux>
+
+-   [http://www.cl.cam.ac.uk/\(\sim\)osc22/tutorials/gpib\_usb\_linux.html](http://www.cl.cam.ac.uk/~osc22/tutorials/gpib_usb_linux.html)
+
+-   <http://rfpoweramp.wordpress.com/2014/07/26/setting-up-ni-gpib-usb-hs-under-linux/>
+
+######Linux GPIB Package
+
+1. update all programm packages: ```sudo apt-get update```
+
+2. download the GPIB package from <http://sourceforge.net/projects/linux-gpib/?source=dlp> and unpack the file 
+   (```tar -zxvf \<packagename\>```)
+
+3. install the package with: ```sudo ./configure && sudo make && sudo make install```
+
+The package is correctly installed if no error occurs while importing it in Python (preferable Python 2.7): ```import Gpib```
+
+######Load and set up Kernel Module
+
+1. load Kernel module **ni\_usb\_gpib.ko** (usually at **/lib/modules/3.13.0-35-generic/gpib/ni\_usb**, where the number of the x.xx.x-xx-generic directory can be different)
+
+    ```cd /lib/modules/x.xx.x-xx-generic/gpib/ni_usb```
+
+    ```sudo modprobe ni_usb_gpib```
+
+2. change entry in file **/etc/gpib.conf**
+
+    ```board_type = "ni_usb_b"```
+    
+    ```name = "gpib0"```
+
+3. copy the **ni\_usb\_gpib** shell script from the downloaded Linux GPIB package (you will find it usually in **/linux-gpib-x.x.xx/usb/ni\_usb\_gpib**) to **/lib/udev**.
+
+4. create a new udev[1] rule:
+   create filename **99-linux\_gpib\_ni\_usb.rules** in directory
+   **/etc/udev/rules.d/** with following content:
+   ```
+       SUBSYSTEM=="usb", ACTION=="add", ENV{DEVTYPE}=="usb_device", 
+       ATTR{idVendor}=="3923", ATTR{idProduct}=="709b", MODE="660",
+       GROUP="plugdev", SYMLINK+="usb_gpib"
+       SUBSYSTEM=="usb", ACTION=="add", ENV{DEVTYPE}=="usb_device",
+       ATTR{idVendor}=="3923",ATTR{idProduct}=="709b", 
+       RUN+="/lib/udev/ni_usb_gpib"    
+       KERNEL=="gpib[0-9]*", ACTION=="add", MODE="660", GROUP="plugdev"
+   ```
+   Notice the specific idProduct number **709b**, for **NI\_USB\_GPIB\_HS** adapter only!
+   All idProduct numbers for connected devices can be checked in the terminal with the **lsusb** command.
+
+5. update udev rules: ```sudo udevadm control --reload-rules```
+
+######How to use the Adapter
+
+To get full access to the adapter interface after plug in do:
+
+-   ```sudo gpib_config```
+
+-   ```sudo spyder```
+
+[1] for further information visit <http://en.wikipedia.org/wiki/Udev>
 
 #####Windows:
 * coming soon...
